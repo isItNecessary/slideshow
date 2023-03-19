@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./index.js"></script>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slideshow">
+            <img src="./assets/tesla.jpg" class="slide">
+            <img src="./assets/porsche.jpg" class="slide">
+            <img src="./assets/bmw.jpg" class="slide">
+            <img src="./assets/audi.jpg" class="slide">
+            <img src="./assets/renault.jpg" class="slide">
+          </div>
+         <div class="prev-next-button">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+         </div>
+          <div class="dot-container">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+    
+          
+          <script>
+            let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+    const dots = document.getElementsByClassName("dot");
+    
+    function showSlides() {
+        //iterate thrpugh lenth of slide and hide all
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      //increment slide index by 1
+      slideIndex++;
+      //if slide index greate than no of slides, reset to 1
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+    
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active-dot");
+      }
+      dots[slideIndex - 1].classList.add("active-dot");
+    
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 3000);
+    }
+    
+    function plusSlides(n) {
+      slideIndex += n;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      if (slideIndex < 1) {
+        slideIndex = slides.length;
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active-dot");
+      }
+      dots[slideIndex - 1].classList.add("active-dot");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slides[slideIndex - 1].style.display = "block";
+    }
+    
+    showSlides();
+          </script>
+    </div>
+
+</body>
+</html>
